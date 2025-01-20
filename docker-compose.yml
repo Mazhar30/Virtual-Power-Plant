@@ -1,0 +1,28 @@
+version: '3.3'
+
+services:
+
+  mongo:
+    image: mongo:6.0
+    container_name: vpp-mongodb-container
+    ports:
+      - "27017:27017"
+    volumes:
+      - ./mongo_data:/data/db
+    restart: always
+
+  rabbitmq:
+    image: rabbitmq:3-management
+    container_name: vpp-rabbitmq-container
+    environment:
+      RABBITMQ_DEFAULT_USER: guest      # Change to your desired username
+      RABBITMQ_DEFAULT_PASS: guest   # Change to your desired password
+    ports:
+      - "5672:5672"   # RabbitMQ default port for messaging
+      - "15672:15672" # RabbitMQ management console port
+      
+  redis:
+    image: redis:7
+    container_name: vpp-redis-container
+    ports:
+      - "6379:6379"

@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+    <property name="LOG_PATH" value="/hms/logs/digi-rewards/rewards-ui/api-server"/>
+
+    <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
+        <target>System.out</target>
+        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+            <level>INFO</level>
+        </filter>
+        <encoder>
+            <pattern>%white(%d{ISO8601}) [%highlight(%-5level)] [%blue(%t)] [${PID:-}] %yellow(%logger{1}) %msg %n
+            </pattern>
+        </encoder>
+    </appender>
+
+    <appender name="debug-appender"
+              class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${LOG_PATH}/debug.log</file>
+        <append>true</append>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>${LOG_PATH}/debug.%d{yyyy-MM-dd_HH}.log
+            </fileNamePattern>
+            <maxHistory>30</maxHistory>
+        </rollingPolicy>
+        <encoder>
+            <pattern>%white(%d{ISO8601}) [%highlight(%-5level)] [%blue(%t)] [${PID:-}] %yellow(%logger{1}) %msg %n
+            </pattern>
+        </encoder>
+    </appender>
+
+    <appender name="info-appender"
+              class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${LOG_PATH}/info.log</file>
+        <append>true</append>
+        <!-- deny all events with a level below INFO, that is TRACE and DEBUG -->
+        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+            <level>INFO</level>
+        </filter>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>${LOG_PATH}/info.%d{yyyy-MM-dd_HH}.log
+            </fileNamePattern>
+        </rollingPolicy>
+        <encoder>
+            <pattern>%white(%d{ISO8601}) [%highlight(%-5level)] [%blue(%t)] [${PID:-}] %yellow(%logger{1}) %msg %n
+            </pattern>
+        </encoder>
+    </appender>
+
+    <appender name="error-appender"
+              class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${LOG_PATH}/error.log</file>
+        <append>true</append>
+        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+            <level>ERROR</level>
+        </filter>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>${LOG_PATH}/error.%d{yyyy-MM-dd_HH}.log
+            </fileNamePattern>
+        </rollingPolicy>
+        <encoder>
+            <pattern>%white(%d{ISO8601}) [%highlight(%-5level)] [%blue(%t)] [${PID:-}] %yellow(%logger{1}) %msg %n
+            </pattern>
+        </encoder>
+    </appender>
+
+    <logger name="com.vpp.cc" level="DEBUG" additivity="true">
+        <appender-ref ref="debug-appender"/>
+        <appender-ref ref="info-appender"/>
+        <appender-ref ref="error-appender"/>
+    </logger>
+
+    <logger name="org.springframework" level="INFO"/>
+
+    <root level="error">
+        <appender-ref ref="error-appender"/>
+    </root>
+</configuration>

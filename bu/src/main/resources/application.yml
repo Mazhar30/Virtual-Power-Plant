@@ -1,0 +1,17 @@
+
+server:
+  port: 8081
+
+spring:
+  application:
+    name: bu
+
+  rabbitmq:
+    host: localhost
+    port: 5672
+    username: guest
+    password: guest
+    virtual-host: /
+    listener:
+      simple:
+        missing-queues-fatal: false

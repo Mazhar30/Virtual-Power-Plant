@@ -1,0 +1,70 @@
+
+server:
+  port: 8080
+
+spring:
+  application:
+    name: cc
+  data:
+    mongodb:
+      database: vpp_db
+      uri: mongodb://localhost:27017/vpp_db
+
+  redis:
+    host: localhost
+    port: 6379
+
+  rabbitmq:
+    host: localhost
+    port: 5672
+    username: guest
+    password: guest
+    virtual-host: /
+    listener:
+      simple:
+        missing-queues-fatal: false
+
+config:
+  message:
+    publishing:
+      scheduler:
+        frequency: 15000
+    queue:
+      name: battery-queue
+  cache:
+    time-to-live: 10 #in minutes
+  back-pressure-buffer:
+    max-size: 1000
+    buffer:
+      max-size: 100
+
+rate-limiting:
+  endpoints:
+    "/api/batteries/save": 20
+    "/api/batteries/getBatteries": 100
+    "/api/batteries/getBatteriesBelowCapacity": 100
+    "/api/batteries/stats": 100
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health, prometheus, metrics
+  endpoint:
+    health:
+      show-details: always
+  metrics:
+    export:
+      prometheus:
+        enabled: true
+
+logging:
+  level:
+    org.springframework.amqp: DEBUG
+
+jwt:
+  secret.key: your-256-bit-secret-key-aefsefsfsrfsfsfsfsf
+  token:
+    expiration:
+      time: 6000000
+  users: user1,user2
