@@ -90,7 +90,7 @@ http://localhost:8080/swagger-ui/
 
 You can find the API curl call inside curl/ directory.
 
-Endpoints
+# Endpoints
 •  Authenticate User: POST /api/auth/login
 
 •  Add Batteries: POST /api/batteries/save  (Needs Authentication)
