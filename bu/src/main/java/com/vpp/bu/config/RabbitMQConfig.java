@@ -1,6 +1,7 @@
 package com.vpp.bu.config;
 
 import com.vpp.bu.dto.BatteryUpdate;
+import org.springframework.amqp.core.Queue;
 import org.springframework.amqp.rabbit.config.SimpleRabbitListenerContainerFactory;
 import org.springframework.amqp.rabbit.connection.ConnectionFactory;
 import org.springframework.amqp.support.converter.DefaultJackson2JavaTypeMapper;
@@ -15,6 +16,11 @@ import java.util.HashMap;
 public class RabbitMQConfig {
 
     public static final String BATTERY_QUEUE = "battery-queue";
+
+    @Bean
+    public Queue batteryQueue() {
+        return new Queue(BATTERY_QUEUE, false);
+    }
 
     @Bean
     public Jackson2JsonMessageConverter jackson2JsonMessageConverter() {

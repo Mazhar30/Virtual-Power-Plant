@@ -8,14 +8,14 @@ spring:
   data:
     mongodb:
       database: vpp_db
-      uri: mongodb://localhost:27017/vpp_db
+      uri: mongodb://mongo:27017/vpp_db
 
   redis:
-    host: localhost
+    host: redis
     port: 6379
 
   rabbitmq:
-    host: localhost
+    host: rabbitmq
     port: 5672
     username: guest
     password: guest

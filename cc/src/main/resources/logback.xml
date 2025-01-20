@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <configuration>
-    <property name="LOG_PATH" value="/hms/logs/digi-rewards/rewards-ui/api-server"/>
+    <property name="LOG_PATH" value="/hms/logs/vpp"/>
 
     <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
         <target>System.out</target>

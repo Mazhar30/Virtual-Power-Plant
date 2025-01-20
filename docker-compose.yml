@@ -2,6 +2,26 @@ version: '3.3'
 
 services:
 
+  battery-management-service:
+    build:
+      context: ./cc
+    ports:
+      - "8080:8080"
+    volumes:
+      - ./logs:/hms/logs/vpp
+    depends_on:
+      - mongo
+      - redis
+      - rabbitmq
+
+  battery-update-service:
+    build:
+      context: ./bu
+    ports:
+      - "8081:8081"
+    depends_on:
+      - rabbitmq
+
   mongo:
     image: mongo:6.0
     container_name: vpp-mongodb-container
@@ -15,8 +35,8 @@ services:
     image: rabbitmq:3-management
     container_name: vpp-rabbitmq-container
     environment:
-      RABBITMQ_DEFAULT_USER: guest      # Change to your desired username
-      RABBITMQ_DEFAULT_PASS: guest   # Change to your desired password
+      RABBITMQ_DEFAULT_USER: guest
+      RABBITMQ_DEFAULT_PASS: guest
     ports:
       - "5672:5672"   # RabbitMQ default port for messaging
       - "15672:15672" # RabbitMQ management console port
