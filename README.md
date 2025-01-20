@@ -111,7 +111,9 @@ You can find the API curl call inside curl/ directory.
 
 # Configuration
 •  Logging: Configured in logback.xml with logs stored in ./logs/
+
 •  JWT Authentication: Configured in application.yml.
+
 •  Rate Limiting: Configured using Spring Boot's built-in support and application.yml.
 
 # Testing
