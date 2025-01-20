@@ -8,12 +8,16 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiParam;
 
 import java.util.HashMap;
 import java.util.Map;
 
 @RestController
 @RequestMapping("/auth")
+@Api(value = "Battery Management System Authentication", tags = "Auth API")
 public class AuthController {
 
     private final JwtTokenProvider jwtTokenProvider;
@@ -22,6 +26,7 @@ public class AuthController {
         this.jwtTokenProvider = jwtTokenProvider;
     }
 
+    @ApiOperation(value = "Authencticate User", notes = "Provide a token to authenticated user.")
     @PostMapping("/login")
     public ResponseEntity<Map<String, String>> login(@RequestBody Map<String, String> request) {
         Map<String, String> response = new HashMap<>();
