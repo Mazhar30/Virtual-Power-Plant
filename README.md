@@ -76,14 +76,15 @@ docker push your-dockerhub-username/battery-update-service:latest
 ```
 2. Apply Kubernetes manifests: (If you push new image, please make sure to update the image in 
        k8s/battery-management-service/deployment.yaml and k8s/battery-update-service/deployment.yaml)
-
+```
 kubectl apply -f k8s/battery-management-service/
 kubectl apply -f k8s/battery-update-service/
 kubectl apply -f k8s/mongo/
 kubectl apply -f k8s/rabbitmq/
 kubectl apply -f k8s/redis/
+```
 
-API Documentation
+## API Documentation
 The API documentation is available via Swagger. Once the application is running, you can access the Swagger UI at:
 
 http://localhost:8080/swagger-ui/
@@ -108,15 +109,15 @@ You can find the API curl call inside curl/ directory.
 •  Get Real-time battery streaming data: GET /api/streaming/batteryUpdates (open the test-sse.html and click the button, 
                                                                             In the browser network tab you can see the streaming.)
 
-Configuration
+# Configuration
 •  Logging: Configured in logback.xml with logs stored in ./logs/
 •  JWT Authentication: Configured in application.yml.
 •  Rate Limiting: Configured using Spring Boot's built-in support and application.yml.
 
-Testing
+# Testing
 Run unit tests using Maven:
-
+```
 mvn test
-
-CI/CD Pipeline
+```
+# CI/CD Pipeline
 The project includes a GitHub Actions workflow for CI/CD. The workflow is defined in .github/workflows/ci-cd.yml.
