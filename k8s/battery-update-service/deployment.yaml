@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: battery-update-service
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: battery-update-service
+  template:
+    metadata:
+      labels:
+        app: battery-update-service
+    spec:
+      containers:
+      - name: battery-update-service
+        image: mazhar30/battery-update-service:latest
+        ports:
+        - containerPort: 8081

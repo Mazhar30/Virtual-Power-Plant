@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: battery-update-service
+spec:
+  selector:
+    app: battery-update-service
+  ports:
+  - protocol: TCP
+    port: 8081
+    targetPort: 8081

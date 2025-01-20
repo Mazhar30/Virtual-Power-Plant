@@ -40,9 +40,11 @@ services:
     ports:
       - "5672:5672"   # RabbitMQ default port for messaging
       - "15672:15672" # RabbitMQ management console port
+    restart: always
       
   redis:
     image: redis:7
     container_name: vpp-redis-container
     ports:
       - "6379:6379"
+    restart: always

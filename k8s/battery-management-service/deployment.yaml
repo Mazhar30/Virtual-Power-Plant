@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: battery-management-service
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: battery-management-service
+  template:
+    metadata:
+      labels:
+        app: battery-management-service
+    spec:
+      containers:
+      - name: battery-management-service
+        image: mazhar30/battery-management-service:latest
+        ports:
+        - containerPort: 8080
+        volumeMounts:
+        - name: logs
+          mountPath: /hms/logs/vpp
+      volumes:
+      - name: logs
+        hostPath:
+        path: /home/mazhar/Personal/Projects/Virtual-Power-Plan/logs
