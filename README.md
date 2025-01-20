@@ -1,9 +1,6 @@
 # Virtual-Power-Plant
 
-## Build Instructions
-
-Battery Management System
-Overview
+# Overview
 This project implements a Battery Management System using Spring Boot. 
 The system provides REST APIs to manage battery data, including adding new batteries, querying batteries by postcode range, 
 and retrieving statistics. The implementation includes advanced engineering concepts such as concurrency handling, 
