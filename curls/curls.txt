@@ -1,0 +1,59 @@
+
+auth/login (returns a token. Use that token to make call to other authenticated API)
+---------------------------------------------------------------------------
+curl --location --request POST 'http://127.0.0.1:8080/auth/login' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+    "username":"user1"
+}'
+
+----------------------------------------------------------------------------
+
+api/batteries/save
+----------------------------------------------------------------------------
+curl --location --request POST 'http://127.0.0.1:8080/api/batteries/save' \
+--header 'Content-Type: application/json' \
+--header 'Authorization: Bearer <YOUR_AUTH_TOKEN_FROM_CALLING_AUTH_LOGIN_API>' \
+--data-raw '[
+  {
+    "name": "Cannington",
+    "postcode": "6107",
+    "capacity": 13500
+  },
+  {
+    "name": "Midland",
+    "postcode": "6057",
+    "capacity": 50500
+  },
+  {
+    "name": "Hay Street",
+    "postcode": "6000",
+    "capacity": 23500
+  }
+]'
+
+--------------------------------------------------------------------------------
+
+api/batteries/getBatteries
+-----------------------------------------------------------------------------------
+curl --location --request GET 'http://127.0.0.1:8080/api/batteries/getBatteries?startPostcode=6000&endPostcode=7000&minCapacity=14000' \
+--header 'Content-Type: application/json' \
+--header 'Authorization: Bearer <YOUR_AUTH_TOKEN_FROM_CALLING_AUTH_LOGIN_API>'
+
+----------------------------------------------------------------------------------
+
+api/batteries/getBatteriesBelowCapacity
+---------------------------------------------------------------------------------
+curl --location --request GET 'http://127.0.0.1:8080/api/batteries/getBatteriesBelowCapacity?capacity=14000' \
+--header 'Content-Type: application/json' \
+--header 'Authorization: Bearer <YOUR_AUTH_TOKEN_FROM_CALLING_AUTH_LOGIN_API>'
+
+-----------------------------------------------------------------------------------
+
+api/batteries/stats
+------------------------------------------------------------------------------------
+curl --location --request GET 'http://127.0.0.1:8080/api/batteries/stats' \
+--header 'Content-Type: application/json' \
+--header 'Authorization: Bearer <YOUR_AUTH_TOKEN_FROM_CALLING_AUTH_LOGIN_API>'
+
+-------------------------------------------------------------------------------------
